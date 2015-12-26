@@ -1,0 +1,24 @@
+{
+  "name": "number-to-words",
+  "description": "A tool to convert a number to words",
+  "keywords": ["Word", "Number"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mohammad Mehdi Habibi",
+      "email": "habibi.esf@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.1.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "NumberToWords\\": "src"
+    }
+  }
+}
