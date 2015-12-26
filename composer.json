@@ -1,5 +1,5 @@
 {
-  "name": "number-to-words",
+  "name": "mhabibi/number-to-words",
   "description": "A tool to convert a number to words",
   "keywords": ["Word", "Number"],
   "license": "MIT",
