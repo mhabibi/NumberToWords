@@ -149,12 +149,11 @@ class NumberToWords
                 $number,
                 $part0Converted . $this->getString('decimal_separator') . $part1Converted
             );
-        } else {
-            return array(
-                $number,
-                $part1Converted
-            );
         }
+        return array(
+            $number,
+            $part1Converted
+        );
     }
 
     /**
