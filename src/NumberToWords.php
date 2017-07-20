@@ -59,7 +59,7 @@ class NumberToWords
             $prefix = $this->getString('plus');
             $number = substr($number, 1);
         }
-        list ($number, $result) = $this->converter($number);
+        $result = $this->converter($number);
 
         return $prefix.$result;
     }
@@ -67,7 +67,7 @@ class NumberToWords
     /**
      * @param number $number
      *
-     * @return array
+     * @return string
      */
     protected function converter($number)
     {
@@ -110,17 +110,14 @@ class NumberToWords
             $result .= $resultArray[$i];
         }
 
-        return [
-            $number,
-            $result,
-        ];
+        return $result;
     }
 
     /**
      * @param number $number
      *
      * @throws \Exception
-     * @return array
+     * @return string
      */
     protected function decimalConverter($number)
     {
@@ -131,28 +128,22 @@ class NumberToWords
 
         // convert decimal part
         $decimal = $parts[1];
-        $decimalSuffix = trim($this->converter(('1'.str_repeat('0', strlen($decimal))))[1]);
+        $decimalSuffix = trim($this->converter(('1'.str_repeat('0', strlen($decimal)))));
         $decimalLen = strlen($decimal);
         if (($decimalLen > 0 && $decimalLen <= 5) || (($decimalLen >= 9 && $decimalLen <= 11))) {
             $decimalSuffix .= $this->getString('decimal_suffix1');
         } else {
             $decimalSuffix .= $this->getString('decimal_suffix2');
         }
-        list ($part1, $part1Converted) = $this->converter($parts[1]);
+        $part1Converted = $this->converter($parts[1]);
         $part1Converted .= ' '.$decimalSuffix;
 
-        list ($part0, $part0Converted) = $this->converter($parts[0]);
-        if ($part0 > 0) {
-            return [
-                $number,
-                $part0Converted.$this->getString('decimal_separator').$part1Converted,
-            ];
+        $part0Converted = $this->converter($parts[0]);
+        if ($parts[0] > 0) {
+            return $part0Converted.$this->getString('decimal_separator').$part1Converted;
         }
 
-        return [
-            $number,
-            $part1Converted,
-        ];
+        return $part1Converted;
     }
 
     /**

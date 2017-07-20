@@ -1,9 +1,9 @@
 <?php
+
 namespace NumberToWords;
 
 class NumberToWordsTest extends \PHPUnit_Framework_TestCase
 {
-
     private $numberToWords;
 
     public function setUp()
@@ -21,21 +21,21 @@ class NumberToWordsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Exception
+     * @expectedException \Exception
      * @expectedExceptionMessage Language file not found!
      */
     public function testInvalidLanguage()
     {
-        $numberToWords = new NumberToWords('00');
+        new NumberToWords('00');
     }
 
     /**
-     * @expectedException Exception
+     * @expectedException \Exception
      * @expectedExceptionMessage Wrong Number
      */
     public function testInvalidNumber()
     {
-        $result = $this->numberToWords->convert('1.2.3');
+        $this->numberToWords->convert('1.2.3');
     }
 
     public function convertProvider()
@@ -43,16 +43,16 @@ class NumberToWordsTest extends \PHPUnit_Framework_TestCase
         return [
             [
                 'number' => '0.123',
-                'words' => 'صد و بیست و سه یک هزارم'
+                'words'  => 'صد و بیست و سه یک هزارم',
             ],
             [
                 'number' => '-123.45',
-                'words' => 'منفی صد و بیست و سه ممیز چهل و پنج صدم'
+                'words'  => 'منفی صد و بیست و سه ممیز چهل و پنج صدم',
             ],
             [
                 'number' => '+123123.400005',
-                'words' => 'مثبت صد و بیست و سه هزار و صد و بیست و سه ممیز چهارصد هزار و پنج یک میلیونیوم'
-            ]
+                'words'  => 'مثبت صد و بیست و سه هزار و صد و بیست و سه ممیز چهارصد هزار و پنج یک میلیونیوم',
+            ],
         ];
     }
 }
